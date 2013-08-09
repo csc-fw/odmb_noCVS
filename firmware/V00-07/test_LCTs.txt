@@ -1,0 +1,39 @@
+WS  3000  100  15    Reset ODMB registers and FIFOs
+SLEEP 1000
+WS  3000    0  15    Set external triggers
+
+BL 5
+   WS     0   0  13   Set CCB in FPGA mode
+   WS	 54   0	 13   Send L1A from CCB to ODMB
+   RS  33BC   0  15   Read ODMB L1A_COUNTER
+   RS  371C   0	 15   Read RAW_LCT_COUNTER(1) 
+   RS  372C   0	 15   Read RAW_LCT_COUNTER(2) 
+   RS  373C   0	 15   Read RAW_LCT_COUNTER(3) 
+   RS  374C   0	 15   Read RAW_LCT_COUNTER(4) 
+   RS  375C   0	 15   Read RAW_LCT_COUNTER(5) 
+   RS  376C   0	 15   Read RAW_LCT_COUNTER(6) 
+   RS  377C   0	 15   Read RAW_LCT_COUNTER(7) 
+EL
+
+BL 5
+   WS  301C  20  15   Send LCT_REQUEST to OTMB
+   RS  371C   0	 15   Read RAW_LCT_COUNTER(1) 
+   RS  372C   0	 15   Read RAW_LCT_COUNTER(2) 
+   RS  373C   0	 15   Read RAW_LCT_COUNTER(3) 
+   RS  374C   0	 15   Read RAW_LCT_COUNTER(4) 
+   RS  375C   0	 15   Read RAW_LCT_COUNTER(5) 
+   RS  376C   0	 15   Read RAW_LCT_COUNTER(6) 
+   RS  377C   0	 15   Read RAW_LCT_COUNTER(7) 
+EL
+
+BL 5
+   WS  301C  40  15   Send EXT_TRIG to OTMB
+   RS  371C   0	 15   Read RAW_LCT_COUNTER(1) 
+   RS  372C   0	 15   Read RAW_LCT_COUNTER(2) 
+   RS  373C   0	 15   Read RAW_LCT_COUNTER(3) 
+   RS  374C   0	 15   Read RAW_LCT_COUNTER(4) 
+   RS  375C   0	 15   Read RAW_LCT_COUNTER(5) 
+   RS  376C   0	 15   Read RAW_LCT_COUNTER(6) 
+   RS  377C   0	 15   Read RAW_LCT_COUNTER(7) 
+EL
+

@@ -1,0 +1,26 @@
+== ================ Global reset ================ ==
+W  3000  300	Reset
+SLEEP 10000
+
+== ================ Configuration ================ ==
+W  3000  200	Set real data and internal triggers
+W  401C  3F	Set KILL
+W  5010 7	Select DCFEB FIFO 7
+
+== ============ Send N real packets ============ ==
+BL 200
+   W  3010  10	Send test L1A(_MATCH) to all DCFEBs
+   SLEEP 100
+   R  327C  0	Read L1A_MATCH_COUNTER sent to DCFEB 7
+   RL1AM    0	Read DCFEB 7 L1A_MATCH_COUNTER
+   R  347C  0	Number of received packets [DCFEB 7]
+   R  367C  0	Number of good CRCs [DCFEB 7]
+
+EL
+
+== ============ Status summary ============ ==
+R  327C  0	Read L1A_MATCH_CNT(7)
+R  347C  0	Number of received packets [DCFEB 7]
+R  367C  0	Number of good CRCs [DCFEB 7]
+
+0  0  0	 	End of file

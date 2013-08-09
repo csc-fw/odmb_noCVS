@@ -1,0 +1,285 @@
+== ================ Global reset ================ ==
+W   3000    100          ODMB_CTRL(8) high [Global reset], ODMB_CTRL(7) low [Dummy DCFEBs]  
+W   3000      0          ODMB_CTRL(8) low [Global reset off]
+W   3000      0          ODMB_CTRL(8) low [Global reset off]
+W   3000      0          ODMB_CTRL(8) low [Global reset off]
+W   3000      0          ODMB_CTRL(8) low [Global reset off]
+W   3000      0          ODMB_CTRL(8) low [Global reset off]
+W   3000      0          ODMB_CTRL(8) low [Global reset off]
+W   3000      0          ODMB_CTRL(8) low [Global reset has finished]
+
+== ================ Setting delays ================ ==
+W   4000      C          Set LCT_L1A_DLY   
+W   4004      1          Set TMB_PUSH_DLY
+W   400C      1          Set ALCT_PUSH_DLY
+
+R   4400            C    Read LCT_L1A_DLY   
+R   4404            1    Read TMB_PUSH_DLY  
+R   440C            1    Read ALCT_PUSH_DLY 
+
+== ========== Writing Event/Trigger FIFOs ========== ==
+R     1C         3333    Read state of FIFOs
+W     20      1          Select FIFO 1 [LSB bunch crossing]
+R     2C            0    Read current write address
+R     3C            0    Read current read address
+W      8     3F          Write FIFO
+W      8     40          Write FIFO
+W      8     41          Write FIFO
+W      8     42          Write FIFO
+W      8     B0          Write FIFO
+W      8     B1          Write FIFO
+W      8    13F          Write FIFO
+W      8    140          Write FIFO
+W      8    141          Write FIFO
+W      8    142          Write FIFO
+W      8    1B0          Write FIFO
+W      8    1B1          Write FIFO
+W      8   503F          Write FIFO
+W      8   5040          Write FIFO
+W      8   5041          Write FIFO
+W      8   5042          Write FIFO
+W      8   50B0          Write FIFO
+W      8   50B1          Write FIFO
+W      8   513F          Write FIFO
+W      8   5140          Write FIFO
+W      8   5141          Write FIFO
+W      8   5142          Write FIFO
+W      8   51B0          Write FIFO
+W      8   51B1          Write FIFO
+R     1C         3332    Read state of FIFOs
+R     2C           18    Read current write address
+R     3C            2    Read current read address
+
+W     20      2          Select FIFO 2 [MSB bunch crossing]
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+W      8      0          Write FIFO
+
+W     20      4          Select FIFO 3 [Triggers]  
+W      8      3          Write FIFO [LCT on DCFEB1]			    
+W      8      0          Write FIFO			    
+W      8      0          Write FIFO			    
+W      8      0          Write FIFO			    
+W      8    400          Write FIFO [L1A]			    
+W      8      0          Write FIFO
+W      8      0          Write FIFO			    
+W      8      F          Write FIFO [LCTs on DCFEBs 1,2,3]			    
+W      8     F1          Write FIFO [LCTs on DCFEBs 4,5,6,7]			    
+W      8      0          Write FIFO			    
+W      8    700          Write FIFO [L1A, LCTs on ALCT & TMB]			    
+W      8      0          Write FIFO
+W      8      F          Write FIFO [LCTs on DCFEBs 1,2,3]			    
+W      8     11          Write FIFO [LCT on DCFEB 4]			    
+W      8     E1          Write FIFO [LCTs on DCFEBs 5,6,7]			    
+W      8      0          Write FIFO			    
+W      8    700          Write FIFO [L1A, LCTs on ALCT & TMB]			    
+W      8      0          Write FIFO
+W      8      F          Write FIFO [LCTs on DCFEBs 1,2,3]			    
+W      8     11          Write FIFO [LCT on DCFEB 4]			    
+W      8     E1          Write FIFO [LCTs on DCFEBs 5,6,7]			    
+W      8      0          Write FIFO			    
+W      8    700          Write FIFO [L1A, LCTs on ALCT & TMB]			    
+W      8      0          Write FIFO
+
+== =========== Start run & Check status ============= ==
+W     20     18          Select FIFO 4 [DDU data] and start run
+
+W   3000     29          Set ODMB_CTRL *Time stamp MSB*
+R   3008            1    Read flf_data
+W   3000     28          Set ODMB_CTRL *Time stamp LSB*
+R   3008         6C4D    Read flf_data
+R     1C          333    Read state of FIFOs
+W     20     14          Select FIFO 3 [Triggers] and keep running
+R     2C           18    Read current write address
+R     3C           18    Read current read address
+W     20     18          Select FIFO 4 *DDU data" and start run
+W   3000     21          Set ODMB_CTRL *L1A_MATCH_CNT(1)*
+R   3008            4    Read flf_data
+W   3000     22          Set ODMB_CTRL *L1A_MATCH_CNT(2)*
+R   3008            3    Read flf_data
+W   3000     23          Set ODMB_CTRL *L1A_MATCH_CNT(3)*
+R   3008            3    Read flf_data
+W   3000     24          Set ODMB_CTRL *L1A_MATCH_CNT(4)*
+R   3008            3    Read flf_data
+W   3000     25          Set ODMB_CTRL *L1A_MATCH_CNT(5)*
+R   3008            3    Read flf_data
+W   3000     26          Set ODMB_CTRL *L1A_MATCH_CNT(6)*
+R   3008            3    Read flf_data
+W   3000     27          Set ODMB_CTRL *L1A_MATCH_CNT(7)*
+R   3008            3    Read flf_data
+W   3000     31          Set ODMB_CTRL *LCT_L1A_GAP(1)*
+R   3008           71    Read flf_data
+W   3000     32          Set ODMB_CTRL *LCT_L1A_GAP(2)*
+R   3008           71    Read flf_data
+W   3000     33          Set ODMB_CTRL *LCT_L1A_GAP(3)*
+R   3008           71    Read flf_data
+W   3000     34          Set ODMB_CTRL *LCT_L1A_GAP(4)*
+R   3008           70    Read flf_data
+W   3000     35          Set ODMB_CTRL *LCT_L1A_GAP(5)*
+R   3008           6F    Read flf_data
+W   3000     36          Set ODMB_CTRL *LCT_L1A_GAP(6)*
+R   3008           6F    Read flf_data
+W   3000     37          Set ODMB_CTRL *LCT_L1A_GAP(7)*
+R   3008           6F    Read flf_data
+W   3000     41          Set ODMB_CTRL *Packet 1 [DCFEB] received*
+R   3008            4    Read flf_data
+W   3000     42          Set ODMB_CTRL *Packet 2 [DCFEB] received*
+R   3008            3    Read flf_data
+W   3000     43          Set ODMB_CTRL *Packet 3 [DCFEB] received*
+R   3008            3    Read flf_data
+W   3000     44          Set ODMB_CTRL *Packet 4 [DCFEB] received*
+R   3008            3    Read flf_data
+W   3000     45          Set ODMB_CTRL *Packet 5 [DCFEB] received*
+R   3008            3    Read flf_data
+W   3000     46          Set ODMB_CTRL *Packet 6 [DCFEB] received*
+R   3008            3    Read flf_data
+W   3000     47          Set ODMB_CTRL *Packet 7 [DCFEB] received*
+R   3008            3    Read flf_data
+W   3000     48          Set ODMB_CTRL *Packet 8 [TMB] received*
+R   3008            3    Read flf_data
+W   3000     49          Set ODMB_CTRL *Packet 9 [ALCT] received*
+R   3008            3    Read flf_data
+R     28            9    Read Number of BX with triggers
+W   3000     3D          Set ODMB_CTRL *CAFIFO_RD_ADDR & CAFIFO_WR_ADDR*
+R   3008           44    Read flf_data
+W   3000     3F          Set ODMB_CTRL *L1A_CNT*
+R   3008            4    Read flf_data
+W   3000     4B          Set ODMB_CTRL *Number of edges in packets*
+R   3008           24    Read flf_data
+W   3000     51          Set ODMB_CTRL *PACKET 1 [DCFEB] sent out to DDU*
+R   3008            4    Read flf_data
+W   3000     52          Set ODMB_CTRL *PACKET 2 [DCFEB] sent out to DDU*
+R   3008            3    Read flf_data
+W   3000     53          Set ODMB_CTRL *PACKET 3 [DCFEB] sent out to DDU*
+R   3008            3    Read flf_data
+W   3000     54          Set ODMB_CTRL *PACKET 4 [DCFEB] sent out to DDU*
+R   3008            3    Read flf_data
+W   3000     55          Set ODMB_CTRL *PACKET 5 [DCFEB] sent out to DDU*
+R   3008            3    Read flf_data
+W   3000     56          Set ODMB_CTRL *PACKET 6 [DCFEB] sent out to DDU*
+R   3008            3    Read flf_data
+W   3000     57          Set ODMB_CTRL *PACKET 7 [DCFEB] sent out to DDU*
+R   3008            3    Read flf_data
+W   3000     58          Set ODMB_CTRL *PACKET 8 [TMB] sent out to DDU*
+R   3008            3    Read flf_data
+W   3000     59          Set ODMB_CTRL *PACKET 9 [ALCT] sent out to DDU*
+R   3008            3    Read flf_data
+
+== ================ Reading FIFOs ================ ==
+R     2C          120    Read current write address
+R     3C            1    Read current read address
+R      C         9001    Read FIFO [Start of header]
+R      C         9000    Read FIFO
+R      C         9001    Read FIFO
+R      C         94F7    Read FIFO
+R      C         A001    Read FIFO
+R      C         A010    Read FIFO
+R      C         A017    Read FIFO
+R      C         A001    Read FIFO
+R     2C          120    Read current write address
+R     3C            9    Read current read address
+R      C         8001    Read FIFO [Start of packet 1]
+R      C         8002    Read FIFO
+R      C         8003    Read FIFO
+R      C         8004    Read FIFO
+R      C         8005    Read FIFO
+R      C         8006    Read FIFO
+R      C         8007    Read FIFO
+R      C         8008    Read FIFO
+R     2C          120    Read current write address
+R     3C           11    Read current read address
+R      C         F5C1    Read FIFO [Start of trailer]
+R      C         F000    Read FIFO
+R      C         F000    Read FIFO
+R      C         F000    Read FIFO
+R      C         E000    Read FIFO
+R      C         E010    Read FIFO
+R      C         EA30    Read FIFO
+R      C         E5DE    Read FIFO
+R     2C          120    Read current write address
+R     3C           19    Read current read address
+
+Start of second packet
+R      C         9002    Read FIFO
+R      C         9000    Read FIFO
+R      C         9C7F    Read FIFO
+R      C         95F7    Read FIFO
+R      C         AC7F    Read FIFO
+R      C         A010    Read FIFO
+R      C         AC17    Read FIFO
+R      C         A002    Read FIFO
+R      C         7001    Read FIFO
+R      C         7002    Read FIFO
+R      C         7003    Read FIFO
+R      C         7004    Read FIFO
+R      C         7005    Read FIFO
+R      C         7006    Read FIFO
+R      C         7007    Read FIFO
+R      C         7008    Read FIFO
+R      C         6001    Read FIFO
+R      C         6002    Read FIFO
+R      C         6003    Read FIFO
+R      C         6004    Read FIFO
+R      C         6005    Read FIFO
+R      C         6006    Read FIFO
+R      C         6007    Read FIFO
+R      C         6008    Read FIFO
+R      C         8001    Read FIFO
+R      C         8002    Read FIFO
+R      C         8003    Read FIFO
+R      C         8004    Read FIFO
+R      C         8005    Read FIFO
+R      C         8006    Read FIFO
+R      C         8007    Read FIFO
+R      C         8008    Read FIFO
+R      C         9001    Read FIFO
+R      C         9002    Read FIFO
+R      C         9003    Read FIFO
+R      C         9004    Read FIFO
+R      C         9005    Read FIFO
+R      C         9006    Read FIFO
+R      C         9007    Read FIFO
+R      C         9008    Read FIFO
+R      C         A001    Read FIFO
+R      C         A002    Read FIFO
+R      C         A003    Read FIFO
+R      C         A004    Read FIFO
+R      C         A005    Read FIFO
+R      C         A006    Read FIFO
+R      C         A007    Read FIFO
+R      C         A008    Read FIFO
+R      C         B001    Read FIFO
+R      C         B002    Read FIFO
+R      C         B003    Read FIFO
+R      C         B004    Read FIFO
+R      C         B005    Read FIFO
+R      C         B006    Read FIFO
+R      C         B007    Read FIFO
+R      C         B008    Read FIFO
+R     1C          333    Read state of FIFOs
+R     2C          120    Read current write address
+R     3C           51    Read current read address
+
+
+Found EOR, exiting.

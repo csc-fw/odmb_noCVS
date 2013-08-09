@@ -1,0 +1,11 @@
+# PROMGEN: Xilinx Prom Generator M.70d
+# Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
+
+SOFTWARE_VERSION M.70d
+DATE            07/02/2013 - 19:41
+SOURCE          C:\Users\odmb\Dropbox\odmb\VME\V00-04\V00-04_odmb_ucsb.mcs
+DEVICE          16384K
+DATA_WIDTH      16
+FILL_DATA       0xFF
+SIGNATURE       0xAD325553
+START_ADDRESS   0x00000000 END_ADDRESS 0x0053638B DIRECTION_UP   "C:/Users/odmb/Dropbox/odmb/VME/V00-04/V00-04_odmb_ucsb.bit" 6vlx130tff1156

@@ -1,0 +1,101 @@
+== ================ Global reset ================ ==
+W  3000  380	Reset
+SLEEP 1000
+W  3000  280	Set dummy data and triggers
+W  20	 18	Select FIFO 4 [DDU data]
+
+== ============ Dummy DCFEBs packet 1 ============ ==
+R  441C  0	Read KILL
+W  401C  3F	Set KILL
+W  3010  10	Send test L1A(_MATCH) to all DCFEBs
+R  4400  0	Set LCT_L1A_DLY
+R  441C  0	Read KILL
+R  321C  0	Read L1A_MATCH_CNT(1)
+R  322C  0	Read L1A_MATCH_CNT(2)
+R  327C  0	Read L1A_MATCH_CNT(7)
+R  331C  0	Read LCT_L1A_GAP(1)
+R  332C  0	Read LCT_L1A_GAP(2)
+R  337C  0	Read LCT_L1A_GAP(7)
+R  341C  0	Read Number of received packets (1)
+R  342C  0	Read Number of received packets (2)
+R  347C  0	Read Number of received packets (7)
+
+== ============ Dummy DCFEBs packet 2 ============ ==
+W  4000  1	Set LCT_L1A_DLY
+W  401C  0	Set KILL
+W  3010  10	Send test L1A(_MATCH) to all DCFEBs
+R  4400  0	Set LCT_L1A_DLY
+R  441C  0	Read KILL
+R  321C  0	Read L1A_MATCH_CNT(1)
+R  322C  0	Read L1A_MATCH_CNT(2)
+R  327C  0	Read L1A_MATCH_CNT(7)
+R  331C  0	Read LCT_L1A_GAP(1)
+R  332C  0	Read LCT_L1A_GAP(2)
+R  337C  0	Read LCT_L1A_GAP(7)
+
+R  341C  0	Read Number of received packets (1)
+R  342C  0	Read Number of received packets (2)
+R  347C  0	Read Number of received packets (7)
+R  351C	 0	Number of packets sent out to DDU/PC [DCFEB 1]
+R  352C	 0	Number of packets sent out to DDU/PC [DCFEB 2]
+R  357C	 0	Number of packets sent out to DDU/PC [DCFEB 7]
+
+== ============ Reading Dummy DDU FIFOs ================ ==
+W  20	18	Select FIFO 4 [DDU data and keep running]
+R  2C   0       Read current write address
+R  3C   0       Read current read address
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  2C   0       Read current write address
+R  3C   0       Read current read address
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  2C   0       Read current write address
+R  3C   0       Read current read address
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  2C   0       Read current write address
+R  3C   0       Read current read address
+
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  C 	0	Read FIFO
+R  1C   0       Read state of FIFOs
+R  2C   0       Read current write address
+R  3C   0       Read current read address
+
+
+0  0  0	 	End of file
