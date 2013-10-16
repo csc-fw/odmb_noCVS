@@ -1,0 +1,140 @@
+== ================ Global reset and MUXes ================ ==
+W  3000  300    Reset
+SLEEP 10000
+
+W  3000  2000	Set real data and pedestal
+W  3100  0	Set internal loopback
+W  401C  180	Unkill DCFEBs
+R  33FC  0      Read L1A_COUNTER
+R  327C  0      Read L1A matches in DCFEB 7
+R  347C  0      Packets sent from DCFEB 7
+R  34AC  0      Packets sent to DDU
+
+BL 1
+  WS 0  0 13    Set CCB in FPGA mode
+  WS 20 0 13    Unmask L1As
+  WS 54 0 13    Request L1A
+  SLEEP 100
+EL
+R  33FC  0      Read L1A_COUNTER
+R  327C  0      Read L1A matches in DCFEB 7
+R  347C  0      Packets sent from DCFEB 7
+R  34AC  0      Packets sent to DDU
+R  338C  0
+R  339C  0
+
+== ============ Reading DDU TX FIFO ================ ==
+R  530C  0      Read number of words in DDU TX FIFO
+R  5300  0      Read DDU TX FIFO [start of header]
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+
+R  5300  0      Read DDU TX FIFO [DCFEB 1 data]
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+
+R  5300  0      Read DDU TX FIFO 
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+
+R  5300  0      Read DDU TX FIFO 
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+R  5300  0      Read DDU TX FIFO
+
+R  530C  0      Read number of words in DDU TX FIFO
+
+== ============ Reading PC RX FIFO ================ ==
+R  520C  0      Read number of words in PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+
+R  5200  0      Read PC RX FIFO [start of DDU header]
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+
+R  5200  0      Read PC RX FIFO [start of ODMB header]
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+
+R  5200  0      Read PC RX FIFO [DCFEB 1 data]
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+
+R  5200  0      Read PC RX FIFO 
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+
+R  5200  0      Read PC RX FIFO 
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+
+R  5200  0      Read PC RX FIFO 
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  5200  0      Read PC RX FIFO
+R  520C  0      Read number of words in PC RX FIFO
+
