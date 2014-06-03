@@ -1,0 +1,17 @@
+PROMGEN: Xilinx Prom Generator M.81d
+Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
+
+promgen -w -p mcs -c FF -o C:\Users\Manuel\Documents\Firmware\temp\V03-04//V03-04-8_odmb_ucsb -x xcf128x -u 00000000 C:/Users/Manuel/Documents/Firmware/temp/V03-04/V03-04-8_odmb_ucsb.bit -bpi_dc parallel -data_width 16 
+
+PROM C:\Users\Manuel\Documents\Firmware\temp\V03-04\V03-04-8_odmb_ucsb.prm map: Sat May 17 23:16:08 2014
+
+Calculating PROM checksum with fill value ff
+
+Format        Mcs86 (32-bit)
+Size          16384K
+PROM start    0000:0000
+PROM end      00ff:ffff
+PROM checksum ae88b078
+
+        Addr1        Addr2                     Date File(s)
+    0000:0000    0053:638b     May 17 23:14:47 2014 C:/Users/Manuel/Documents/Firmware/temp/V03-04/V03-04-8_odmb_ucsb.bit

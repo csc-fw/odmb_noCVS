@@ -1,0 +1,11 @@
+# PROMGEN: Xilinx Prom Generator M.81d
+# Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
+
+SOFTWARE_VERSION M.81d
+DATE            05/17/2014 - 23:16
+SOURCE          C:\Users\Manuel\Documents\Firmware\temp\V03-04\V03-04-8_odmb_ucsb.mcs
+DEVICE          16384K
+DATA_WIDTH      16
+FILL_DATA       0xFF
+SIGNATURE       0xAE88B078
+START_ADDRESS   0x00000000 END_ADDRESS 0x0053638B DIRECTION_UP   "C:/Users/Manuel/Documents/Firmware/temp/V03-04/V03-04-8_odmb_ucsb.bit" 6vlx130tff1156
