@@ -1,0 +1,18 @@
+PROMGEN: Xilinx Prom Generator P.20131013
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+promgen -w -p mcs -c FF -o C:\Users\Manuel\Dropbox\ODMB\Temp\V03-07//V03-07-9_odmb_ucsb -x xcf128x -u 00000000 C:/Users/Manuel/Dropbox/ODMB/Temp/V03-07/V03-07-9_odmb_ucsb.bit -data_file up 300000 C:/Users/Manuel/Dropbox/ODMB/Temp/V03-07/odmb_toprom.hex -bpi_dc parallel -data_width 16 
+
+PROM C:\Users\Manuel\Dropbox\ODMB\Temp\V03-07\V03-07-9_odmb_ucsb.prm map: Thu Jun 19 14:43:40 2014
+
+Calculating PROM checksum with fill value ff
+
+Format        Mcs86 (32-bit)
+Size          16384K
+PROM start    0000:0000
+PROM end      00ff:ffff
+PROM checksum aeb9f308
+
+        Addr1        Addr2                     Date File(s)
+    0000:0000    0053:638b     Jun 19 14:23:40 2014 C:/Users/Manuel/Dropbox/ODMB/Temp/V03-07/V03-07-9_odmb_ucsb.bit
+    0060:0000    0060:000f     Jun 11 23:46:22 2014 C:/Users/Manuel/Dropbox/ODMB/Temp/V03-07/odmb_toprom.hex
